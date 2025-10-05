@@ -3,20 +3,29 @@ on: [push]
 permissions:
   contents: write
 jobs:
-  build-and-deploy:
-    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+  deploy-to-github-pages:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.200
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
-          dotnet restore
-          dotnet build --configuration Release
-          dotnet publish --configuration Release --output build
+      - name: Restore packages
+        run: dotnet restore
 
+      - name: Publish .NET Core Project
+        run: dotnet publish -c Release -o release
+
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./INNOXEL_Web/wwwroot
+          folder: release/wwwroot
