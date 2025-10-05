@@ -3,7 +3,7 @@ name: Build and Deploy Blazor WASM to GitHub Pages
 on:
   push:
     branches:
-      - masster  # Change if your default branch is different
+      - master  # Change if your default branch is different
 
 permissions:
   contents: write
