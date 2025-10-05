@@ -17,8 +17,4 @@
 
 
 	
-
-	<ItemGroup>
-		<Content Include="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
-	</ItemGroup>
 </Project>
