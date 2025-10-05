@@ -109,7 +109,7 @@
 
     /* --- Parallax Section --- */
     .parallax-section {
-        background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('/images/zermatt.jpg');
+        background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('./images/zermatt.jpg');
         background-size: cover;
         background-position: center;
         min-height: 50vh;
@@ -258,7 +258,7 @@
         <MudGrid Class="fade-in slide-in-right" AlignItems="Center" Spacing="4" style="padding:5%;">
             <MudItem xs="12" md="5">
                 <MudPaper Elevation="2" Class="overflow-hidden rounded-2xl" >
-                    <MudCardMedia Image="/images/zermatt.jpg"  />
+                    <MudCardMedia Image="./images/zermatt.jpg"  />
                 </MudPaper>
             </MudItem>
 
@@ -331,10 +331,10 @@
 
     protected override void OnInitialized()
     {
-        projectReferences.Add(new ProjectReference { Name = "Hotel Sonne | Zermatt", ImageRef = "/images/zermatt.jpg" });
-        projectReferences.Add(new ProjectReference { Name = "Kino Kapitol | Olten", ImageRef = "/images/olten.jpg" });
-        projectReferences.Add(new ProjectReference { Name = "Einfamilienhaus | Baselland", ImageRef = "/images/baselland.jpg" });
-        projectReferences.Add(new ProjectReference { Name = "Zweifamilienhaus | Reinach", ImageRef = "/images/reinach.jpg" });
+        projectReferences.Add(new ProjectReference { Name = "Hotel Sonne | Zermatt", ImageRef = "./images/zermatt.jpg" });
+        projectReferences.Add(new ProjectReference { Name = "Kino Kapitol | Olten", ImageRef = "./images/olten.jpg" });
+        projectReferences.Add(new ProjectReference { Name = "Einfamilienhaus | Baselland", ImageRef = "./images/baselland.jpg" });
+        projectReferences.Add(new ProjectReference { Name = "Zweifamilienhaus | Reinach", ImageRef = "./images/reinach.jpg" });
     }
 
     [Inject] private IJSRuntime JS { get; set; }
