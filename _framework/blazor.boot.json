@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "INNOXEL_Web",
   "resources": {
-    "hash": "sha256-vJICJCu9StHff/li03QNP5Ar07dqwc//SS6N38q/V7s=",
+    "hash": "sha256-cpx0PYyz8Bjn+AV0i/Eyc8Yph83YWW6kVQP+SAa1Wgo=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-D0bzod5lwwSzPR43JC8TTCcZKw+3jIHOk8CZFCRj5is="
     },
@@ -57,7 +57,7 @@
       "System.Text.RegularExpressions.wasm": "sha256-LknzojEpcL3TnsjZXBjMrkQA33FmD05bUbQy6K5LOXc=",
       "System.wasm": "sha256-9DLmgOsnmEbjuZrRVFruRmVRvh/skjCDv6hQMjVZ3K8=",
       "System.Private.CoreLib.wasm": "sha256-bcpfqSMxu8+uConsNjqQXCWvKa8M6hYSM4JCN0lKs/w=",
-      "INNOXEL_Web.wasm": "sha256-9uwIB9mCtvvrAfQRP9aK/46U9oVOmI7orKH2KKqpsPw="
+      "INNOXEL_Web.wasm": "sha256-31dyTN6jo2xyDMRrZu953laFGLCbqIJddqVXHbZ06+Q="
     }
   },
   "cacheBootResources": true,
