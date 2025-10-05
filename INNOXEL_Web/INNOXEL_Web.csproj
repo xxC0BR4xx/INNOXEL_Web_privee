@@ -16,5 +16,13 @@
 
 
 
+	<ItemGroup>
+	  <Content Update="wwwroot\.nojekyll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+
+
 	
 </Project>
