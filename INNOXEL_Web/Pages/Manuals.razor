@@ -1,0 +1,288 @@
+﻿@page "/manuals"
+@inherits LayoutComponentBase
+@inject IJSRuntime JS
+
+<style>
+    .manuals-page {
+        padding: 6vh 2vw;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .manuals-group {
+        margin-bottom: 6rem;
+    }
+
+    .manual-group-title {
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: var(--mud-palette-primary);
+    }
+
+    /* Cards */
+    .manual-card {
+        flex: 0 0 auto; /* prevents stretching */
+        width: 260px;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* do not stretch content */
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        margin-top: 0.5rem; /* adds gap above */
+        margin-bottom: 0.5rem; /* adds gap below */
+    }
+
+    .manual-card-media {
+        height: 160px;
+        object-fit: cover;
+    }
+
+    /* Optional: make carousel wrapper not stretch cards */
+    .manual-carousel-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* keeps cards at top */
+        gap: 1.5rem;
+        flex-wrap: nowrap;
+        padding: 0 1rem;
+    }
+
+    .manual-carousel {
+        width: 100%;
+        height: 40vh; /* fixed height for carousel */
+    }
+
+        .manual-carousel .mud-carousel-item {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* center cards vertically */
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+    .manual-card {
+        flex: 0 0 auto; /* do not stretch */
+        width: 260px;
+        max-width: 300px;
+        max-height: 85%; /* max height relative to carousel */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 1rem;
+        overflow: hidden;
+        margin: 0.5rem 0; /* vertical gap */
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .manual-card-media {
+        height: 160px;
+        object-fit: cover;
+    }
+
+</style>
+
+<div class="manuals-page">
+    <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-6">
+        Datenblätter, Schemas & Anleitungen
+    </MudText>
+
+    @foreach (var group in manualGroups)
+    {
+        <div class="manuals-group">
+            <MudText Typo="Typo.h5" Class="manual-group-title">@group.GroupName</MudText>
+            <MudDivider Class="mb-4" />
+            <MudTextField T="string"
+                          Value="@group.SearchTerm"
+                          Placeholder="Suche..."
+                          Adornment="Adornment.Start"
+                          AdornmentIcon="@Icons.Material.Filled.Search"
+                          Class="mb-4"
+                          Immediate="true"
+                          ValueChanged="@(v => UpdateChunks(group, v))"
+                          ValueExpression="(() => group.SearchTerm)" />
+
+
+
+
+
+
+
+            <MudCarousel TData="object"
+                         Class="manual-carousel"
+                         AutoCycle="false"
+                         ShowArrows="true"
+                         ShowBullets="false"
+            >
+
+                @foreach (var chunk in group.Chunks)
+                {
+                    <MudCarouselItem>
+                        <div class="manual-carousel-wrapper">
+                            @foreach (var manual in chunk)
+                            {
+                                <MudCard Class="manual-card">
+                                    <MudCardMedia Image="@manual.ThumbnailUrl" Class="manual-card-media" Alt="@manual.Title" />
+                                    <MudCardContent>
+                                        <MudText Typo="Typo.h6">
+                                            <MudHighlighter Text="@manual.Title" SearchText="@group.SearchTerm" />
+                                        </MudText>
+                                        <MudText Typo="Typo.body2">
+                                            <MudHighlighter Text="@manual.Description" SearchText="@group.SearchTerm" />
+                                        </MudText>
+                                    </MudCardContent>
+                                    <MudCardActions>
+                                        <MudButton Color="Color.Primary" Href="@manual.DownloadUrl" Target="_blank">
+                                            Download
+                                        </MudButton>
+                                    </MudCardActions>
+                                </MudCard>
+                            }
+                        </div>
+                    </MudCarouselItem>
+                }
+
+            </MudCarousel>
+
+        </div>
+    }
+</div>
+
+@code {
+    private class Manual
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ThumbnailUrl { get; set; }
+        public string DownloadUrl { get; set; }
+    }
+
+    private class ManualGroup
+    {
+        public string GroupName { get; set; }
+        public List<List<Manual>> Chunks { get; set; }
+        public string SearchTerm { get; set; } = string.Empty;
+        public List<Manual> AllManuals { get; set; } = new();
+
+    }
+
+    private List<ManualGroup> manualGroups = new();
+
+    protected override void OnInitialized()
+    {
+        var manuals = new List<Manual>
+        {
+            new() { Title = "Air Receiver", Description = "Installationsanleitung für Light-Serie", ThumbnailUrl = "/images/manual1.jpg", DownloadUrl = "/docs/manual1.pdf" },
+            new() { Title = "DALI-Betriebsarten", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+                        new() { Title = "Dim 4 x 600_300 VA Betriebsanleitung", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+            new() { Title = "INNOXEL Remote", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+            new() { Title = "Integration DoorBird", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+            new() { Title = "iOS App", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+            new() { Title = "Konfiguration Touchpanel ZT10", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+            new() { Title = "Master 3 Benutzerdokumentation", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+            new() { Title = "Master 3 Verdrahtungsbeispiele", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+new() { Title = "Master 3 Verdrahtungsbeispiele", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+new() { Title = "Motor 4 x 230 VAC Betriebsanleitung", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+new() { Title = "Motor 4 x 230 VAC G2 Betriebsanleitung", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+new() { Title = "Motor 4 x 230 VAC G2 Funktionen", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+new() { Title = "Motor 4 x 230 VAC Upgrade G2 Umbauanleitung", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+new() { Title = "MOXA", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+new() { Title = "Switch 8 Betriebsanleitung", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+new() { Title = "Switch 8 G2 Betriebsanleitung", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+new() { Title = "Thermo Display", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+new() { Title = "Touchpanel Panasonic", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+new() { Title = "Wetterstation P033-RS485-CET", Description = "Allgemeine Beschreibung der INNOXEL Komponenten", ThumbnailUrl = "/images/manual2.jpg", DownloadUrl = "/docs/manual2.pdf" },
+
+
+
+
+        };
+
+        var datasheets = new List<Manual>
+        {
+            new() { Title = "Tasterdokumentation Vorlage 2024", Description = "Technische Daten für Netzteil", ThumbnailUrl = "/images/datasheet1.jpg", DownloadUrl = "/docs/datasheet1.pdf" },
+            new() { Title = "Dali Adressierung Vorlage", Description = "Spezifikationen für 8-Kanal-Modul", ThumbnailUrl = "/images/datasheet2.jpg", DownloadUrl = "/docs/datasheet2.pdf" },
+            new() { Title = "INNOXEL Verkabelung Einfamilienhaus", Description = "Spezifikationen für 8-Kanal-Modul", ThumbnailUrl = "/images/datasheet2.jpg", DownloadUrl = "/docs/datasheet2.pdf" },
+            new() { Title = "INNOXEL Verkabelung Mehrfamilienhaus", Description = "Spezifikationen für 8-Kanal-Modul", ThumbnailUrl = "/images/datasheet2.jpg", DownloadUrl = "/docs/datasheet2.pdf" },
+            new() { Title = "2N Verkabelung Einfamilienhaus", Description = "Spezifikationen für 8-Kanal-Modul", ThumbnailUrl = "/images/datasheet2.jpg", DownloadUrl = "/docs/datasheet2.pdf" },
+            new() { Title = "2N Verkabelung Mehrfamilienhaus", Description = "Spezifikationen für 8-Kanal-Modul", ThumbnailUrl = "/images/datasheet2.jpg", DownloadUrl = "/docs/datasheet2.pdf" },
+            new() { Title = "Datenblätter und Haftungsausschluss 04.09.2024", Description = "Spezifikationen für 8-Kanal-Modul", ThumbnailUrl = "/images/datasheet2.jpg", DownloadUrl = "/docs/datasheet2.pdf" },
+
+
+        };
+
+        var schemata = new List<Manual>
+        {
+            new() { Title = "Muster INNOXEL Master 3 und Reiheneinbaugeräte", Description = "Beispielschema für Raumlichtsteuerung", ThumbnailUrl = "/images/schema1.jpg", DownloadUrl = "/docs/schema1.pdf" },
+            new() { Title = "Muster Free Cooling", Description = "Schema für Heizungsintegration", ThumbnailUrl = "/images/schema2.jpg", DownloadUrl = "/docs/schema2.pdf" },
+                        new() { Title = "Muster Garagentor", Description = "Beispielschema für Raumlichtsteuerung", ThumbnailUrl = "/images/schema1.jpg", DownloadUrl = "/docs/schema1.pdf" },
+            new() { Title = "Muster INNOXEL In 04 LC", Description = "Beispielschema für Raumlichtsteuerung", ThumbnailUrl = "/images/schema1.jpg", DownloadUrl = "/docs/schema1.pdf" },
+            new() { Title = "Muster Master 3 Wetterstation MFH", Description = "Beispielschema für Raumlichtsteuerung", ThumbnailUrl = "/images/schema1.jpg", DownloadUrl = "/docs/schema1.pdf" },
+            new() { Title = "Muster Velux KLF 200", Description = "Beispielschema für Raumlichtsteuerung", ThumbnailUrl = "/images/schema1.jpg", DownloadUrl = "/docs/schema1.pdf" },
+            new() { Title = "Muster Zehnder Option Box", Description = "Beispielschema für Raumlichtsteuerung", ThumbnailUrl = "/images/schema1.jpg", DownloadUrl = "/docs/schema1.pdf" },
+
+        };
+
+        manualGroups.Add(new ManualGroup
+        {
+            GroupName = "Anleitungen",
+            AllManuals = manuals,
+            Chunks = ChunkList(manuals, 3)
+        });
+        manualGroups.Add(new ManualGroup
+        {
+            GroupName = "Datenblätter",
+            AllManuals = datasheets,
+            Chunks = ChunkList(datasheets, 3)
+        });
+        manualGroups.Add(new ManualGroup
+        {
+            GroupName = "Schemata",
+            AllManuals = schemata,
+            Chunks = ChunkList(schemata, 3)
+        });
+
+    }
+
+    private List<List<T>> ChunkList<T>(List<T> list, int chunkSize)
+    {
+        var result = new List<List<T>>();
+        for (int i = 0; i < list.Count; i += chunkSize)
+            result.Add(list.Skip(i).Take(chunkSize).ToList());
+        return result;
+    }
+
+    private void UpdateChunks(ManualGroup group, string newValue)
+    {
+        group.SearchTerm = newValue;
+
+        var filtered = string.IsNullOrWhiteSpace(group.SearchTerm)
+            ? group.AllManuals
+            : group.AllManuals
+                .Where(m => m.Title.Contains(group.SearchTerm, StringComparison.OrdinalIgnoreCase) ||
+                            m.Description.Contains(group.SearchTerm, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+        group.Chunks = ChunkList(filtered, 3);
+
+        StateHasChanged(); // force UI update
+    }
+
+
+
+
+
+
+
+}

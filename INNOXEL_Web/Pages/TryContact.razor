@@ -1,0 +1,104 @@
+﻿@page "/trycontact"
+
+<PageTitle>Kontakt – ZidaTech</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8 mb-10" >
+    <MudPaper Elevation="2" Class="p-6" style="padding: 5%;">
+        <MudText Typo="Typo.h4" GutterBottom="true" Class="mb-4 text-primary">Kontakt</MudText>
+        <MudText Typo="Typo.subtitle1" Class="mb-6">
+            Wir freuen uns auf Ihre Nachricht oder Ihren Besuch!
+        </MudText>
+
+        <MudText Typo="Typo.subtitle1" Class="mb-6">
+            Viele Fragen lassen sich bereits schnell und unkompliziert über unsere
+            <b>FAQ- und Supportplattform</b> beantworten. Dort finden Sie zahlreiche
+            hilfreiche Artikel, Schritt-für-Schritt-Anleitungen und Lösungsvorschläge
+            zu den häufigsten Themen rund um unsere Produkte und Dienstleistungen.
+        </MudText>
+
+        <MudText Typo="Typo.subtitle1" Class="mb-6">
+            Sollten Sie dort keine passende Antwort finden, können Sie uns selbstverständlich
+            jederzeit direkt kontaktieren. Unser Support-Team steht Ihnen gerne per E-Mail unter
+            <MudLink Href="mailto:support@innoxel.ch">support@innoxel.ch</MudLink>
+            oder telefonisch während der Öffnungszeiten zur Verfügung.
+        </MudText>
+
+        <MudText Typo="Typo.subtitle1" Class="mb-6">
+            Besuchen Sie auch unsere Hilfe-Website unter
+            <MudLink Href="https://zidatech.freshdesk.com/support/solutions" Target="_blank">Wissensdatenbank</MudLink>
+                , um weitere Informationen und Ressourcen zu finden.
+        </MudText>
+
+        <MudDivider Class="mb-4" />
+
+        <!-- Address -->
+        <MudGrid Class="mb-4">
+            <MudItem xs="12" sm="6">
+                <MudText Typo="Typo.h6">Adresse</MudText>
+                <MudText>
+                    <b>ZidaTech AG</b><br />
+                    Fabrikstrasse 9<br />
+                    4614 Hägendorf<br />
+                    Schweiz
+                </MudText>
+            </MudItem>
+
+            <MudItem xs="12" sm="6">
+                <MudText Typo="Typo.h6">Kontakt</MudText>
+                <MudText>
+                    Telefon: <MudLink Href="tel:+41622096030">+41 62 209 60 30</MudLink><br />
+                    E-Mail: <MudLink Href="mailto:support@innoxel.ch">support@innoxel.ch</MudLink>
+                </MudText>
+            </MudItem>
+        </MudGrid>
+
+        <MudDivider Class="my-4" />
+
+        <!-- Opening Hours -->
+        <MudText Typo="Typo.h6" Class="mb-2">Öffnungszeiten</MudText>
+
+        <MudTable Dense="true" Items="@openingHours">
+            <HeaderContent>
+                <MudTh>Tag</MudTh>
+                <MudTh>Vormittag</MudTh>
+                <MudTh>Nachmittag</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>@context.Day</MudTd>
+                <MudTd>@context.Morning</MudTd>
+                <MudTd>@context.Afternoon</MudTd>
+            </RowTemplate>
+        </MudTable>
+
+
+        <MudDivider Class="my-4" />
+
+        <!-- Optional: Map Placeholder -->
+        <MudText Typo="Typo.h6" Class="mb-2">Standort</MudText>
+        <MudPaper Elevation="1" Class="p-0 overflow-hidden" Style="height: 300px;">
+            <iframe 
+                width="100%" 
+                height="300" 
+                frameborder="0" 
+                style="border:0"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2747.9448122403733!2d7.834!3d47.335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4791b74cb21f705b%3A0x3a94b7ce1a80f!2sFabrikstrasse%209%2C%204614%20H%C3%A4gendorf!5e0!3m2!1sde!2sch!4v0000000000"
+                allowfullscreen>
+            </iframe>
+        </MudPaper>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private List<OpeningHour> openingHours = new()
+    {
+        new() { Day = "Montag – Donnerstag", Morning = "07:30 – 12:00", Afternoon = "13:15 – 17:00" },
+        new() { Day = "Freitag", Morning = "07:30 – 12:00", Afternoon = "13:15 – 16:00" },
+    };
+
+    public class OpeningHour
+    {
+        public string Day { get; set; } = "";
+        public string Morning { get; set; } = "";
+        public string Afternoon { get; set; } = "";
+    }
+}

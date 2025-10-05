@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INNOXEL_Web", "INNOXEL_Web\INNOXEL_Web.csproj", "{CAA7A3AC-0BA7-4C92-B1BE-A85D31CD3D6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAA7A3AC-0BA7-4C92-B1BE-A85D31CD3D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA7A3AC-0BA7-4C92-B1BE-A85D31CD3D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA7A3AC-0BA7-4C92-B1BE-A85D31CD3D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA7A3AC-0BA7-4C92-B1BE-A85D31CD3D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10217661-ECA5-424A-9852-4051570D2124}
+	EndGlobalSection
+EndGlobal

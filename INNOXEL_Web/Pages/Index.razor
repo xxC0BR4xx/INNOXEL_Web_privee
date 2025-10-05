@@ -1,0 +1,350 @@
+﻿@page "/"
+<PageTitle>INNOXEL</PageTitle>
+
+<style>
+    /* --- General Reset --- */
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    /* --- Hero Carousel --- */
+    .hero-carousel {
+        height: 70vh;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .hero-carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+    .hero-overlay {
+        position: absolute;
+        bottom: 20%;
+        right: 5%;
+        color: white;
+        background: rgba(0,0,0,0.5);
+        padding: 1.5rem 2.5rem;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    /* --- Fade & Slide Animations --- */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+    }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    .fade-in-delay-1 {
+        transition-delay: 0.2s;
+    }
+
+    .fade-in-delay-2 {
+        transition-delay: 0.4s;
+    }
+
+    .fade-in-delay-3 {
+        transition-delay: 0.6s;
+    }
+
+    .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s ease-out;
+    }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s ease-out;
+    }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+    /* --- Project Cards Hover --- */
+    .project-card {
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        cursor: pointer;
+        height: auto;
+    }
+
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+
+            .project-card:hover::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, rgba(0, 198, 255, 0.2), rgba(0, 114, 255, 0.2));
+                border-radius: 10px;
+                pointer-events: none;
+            }
+
+    /* --- Parallax Section --- */
+    .parallax-section {
+        background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('/images/zermatt.jpg');
+        background-size: cover;
+        background-position: center;
+        min-height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        font-size: 2rem;
+    }
+
+    /* --- Section Gradients --- */
+    .benefits {
+        background: linear-gradient(160deg, rgba(0,198,255,0.05), rgba(0,114,255,0.05));
+        border-radius: 15px;
+        padding: 2rem;
+    }
+
+    .quotes {
+        background: linear-gradient(120deg, #fff5f8, #ffe0f0);
+        padding: 4vh 2vw;
+    }
+
+    /* --- Buttons Hover --- */
+    .mud-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+
+    /* --- Section spacing --- */
+    .section {
+        padding: 6vh 2vw;
+    }
+
+
+    .animated-title {
+        display: inline-block;
+        position: relative;
+    }
+
+        .animated-title::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: #0072ff;
+            transition: width 0.5s ease;
+        }
+
+        .animated-title:hover::after {
+            width: 100%;
+        }
+
+
+    /* Somehow looks not that nice as only fade in. Just try out differnet 
+        Styles in CV or Pages 
+    */
+    .fade-zoom-in {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 0.8s ease-out;
+    }
+
+        .fade-zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+</style>
+
+<div style="min-height:100vh; display:flex; flex-direction:column;">
+
+    <!-- --- Hero Carousel --- -->
+    <MudCarousel TData="object" AutoCycle="true" Style="height:60vh;">
+        @foreach (var reference in projectReferences)
+        {
+            <MudCarouselItem>
+                <div class="hero-carousel">
+                    <img src="@reference.ImageRef" alt="@reference.Name" />
+                    <div class="hero-overlay">@reference.Name</div>
+                </div>
+            </MudCarouselItem>
+        }
+    </MudCarousel>
+
+    <div style="height:5vh;"></div>
+
+    <!-- --- Projects Section --- -->
+    <div class="fade-in slide-in-left">
+        <MudGrid Justify="Justify.Center" Spacing="3">
+            @foreach (var reference in projectReferences)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard Class="project-card">
+                        <MudCardMedia Image="@reference.ImageRef" style="height:200px;" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">@reference.Name</MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    </div>
+
+    <div style="height:5vh;"></div>
+
+    <!-- --- Parallax / Benefits Section --- -->
+    <div class="parallax-section fade-in slide-in-right">
+        <MudText Typo="Typo.h3" Class="animated-title" Align="Align.Start"><b>Smart Living mit INNOXEL</b></MudText>
+    </div>
+
+    <div style="height:5vh;"></div>
+
+    <MudContainer MaxWidth="MaxWidth.Large" Class="py-12">
+
+        <!-- --- INNOXEL Explanation --- -->
+        <MudPaper Elevation="2" Class="mt-16 p-8 text-center fade-in slide-in-left" Style="word-break: break-word; padding:5%;">
+            <MudText Typo="Typo.h3" Class="animated-title">
+                <b>INNOXEL – 
+                    DAS Schweizer Gebäudeautomationssystem</b>
+                </MudText>
+
+            <MudText Typo="Typo.h5" Class="mt-2 mb-4 text-primary">
+                <b>Vernetzt, werterhaltend und zukunftssicher mit INNOXEL</b>
+            </MudText>
+
+            <MudText Typo="Typo.body1" Class="mb-1">
+                INNOXEL ist seit 2001 DAS Gebäudeautomationssystem der Schweiz.
+            </MudText>
+            <MudText Typo="Typo.body1" Class="mb-1">
+                Es bietet Sicherheit, ein gesundes Wohnklima, ist flexibel anpassbar und zuverlässig.
+            </MudText>
+            <MudText Typo="Typo.body1" Class="mb-1">
+                Das System wird seit 2001 in der Schweiz entwickelt, hergestellt und weiterentwickelt und ist seit 2018 eine Marke der ZidaTech AG.
+            </MudText>
+            <MudText Typo="Typo.body1">
+                INNOXEL ist ein drahtgebundenes Bussystem und arbeitet mit dem CAN-Bus, der international standardisiert ist und auch in der Autoindustrie eingesetzt wird.
+            </MudText>
+        </MudPaper>
+
+
+        <!-- --- Benefits Section --- -->
+        <MudGrid Class="fade-in slide-in-right" AlignItems="Center" Spacing="4" style="padding:5%;">
+            <MudItem xs="12" md="5">
+                <MudPaper Elevation="2" Class="overflow-hidden rounded-2xl" >
+                    <MudCardMedia Image="/images/zermatt.jpg"  />
+                </MudPaper>
+            </MudItem>
+
+            <MudItem xs="12" md="7">
+                <MudText Typo="Typo.h4" Class="animated-title mb-2"><b>Smart Living mit INNOXEL</b></MudText>
+                <MudText Typo="Typo.subtitle1" Class="mb-4"><b>Für mehr Unabhängigkeit im Wohnen</b></MudText>
+
+                <MudText Typo="Typo.body1" Class="mb-1">
+                    Ein Gebäudeautomationssystem wie INNOXEL vernetzt die elektrische Hausinstallation miteinander und macht durch die smarte Steuerung das Gebäude intelligent.
+                </MudText>
+                <MudText Typo="Typo.body1" Class="mb-1">
+                    INNOXEL – das System aus der Schweiz – bietet eine hohe Funktionssicherheit und Robustheit gegenüber Störsignalen, aufgrund der CAN-Bus-Technologie.
+                </MudText>
+                <MudText Typo="Typo.body1" Class="mb-6">
+                    INNOXEL ist einfach konfigurierbar und reduziert dadurch die Kosten wesentlich bei der Inbetriebnahme und im Unterhalt.
+                </MudText>
+
+                <MudButton Href="https://www.zidatech.ch/uebersicht-private-bauherren/loesungen-bauherren-smart-living"
+                           Target="_blank"
+                           Variant="Variant.Outlined"
+                           StartIcon="@Icons.Material.Rounded.Info"
+                           Color="Color.Secondary"
+                           Class="text-capitalize">
+                    Entdecken Sie alle Vorteile von INNOXEL!
+                </MudButton>
+            </MudItem>
+        </MudGrid>
+
+
+        <!-- --- Quotes Section --- -->
+        <MudPaper Elevation="2" Class="mt-16 p-8 text-center fade-in slide-in-left" style="padding:5%;">
+            <MudText Typo="Typo.h4" Class="animated-title mb-4">
+                <b>«INNOXEL ist flexibler als konventionelle Systeme und ausgesprochen zukunftsorientiert!»</b>
+            </MudText>
+
+            <MudText Typo="Typo.subtitle1" Class="mb-6">
+                <b>Die langjährige Erfahrung und zahlreiche realisierte Projekte belegen die hohe Qualität des Systems.</b>
+            </MudText>
+
+            <MudButton Href="https://www.zidatech.ch/referenzen"
+                       Target="_blank"
+                       Variant="Variant.Outlined"
+                       StartIcon="@Icons.Material.Rounded.Info"
+                       Color="Color.Secondary"
+                       Class="text-capitalize">
+                Erfahren Sie hier mehr!
+            </MudButton>
+        </MudPaper>
+
+    </MudContainer>
+
+    <div style="height:10vh;"></div>
+
+
+
+</div>
+
+
+
+
+
+@code {
+    private List<ProjectReference> projectReferences = new List<ProjectReference>();
+
+    private class ProjectReference
+    {
+        public string Name;
+        public string ImageRef;
+    }
+
+    protected override void OnInitialized()
+    {
+        projectReferences.Add(new ProjectReference { Name = "Hotel Sonne | Zermatt", ImageRef = "/images/zermatt.jpg" });
+        projectReferences.Add(new ProjectReference { Name = "Kino Kapitol | Olten", ImageRef = "/images/olten.jpg" });
+        projectReferences.Add(new ProjectReference { Name = "Einfamilienhaus | Baselland", ImageRef = "/images/baselland.jpg" });
+        projectReferences.Add(new ProjectReference { Name = "Zweifamilienhaus | Reinach", ImageRef = "/images/reinach.jpg" });
+    }
+
+    [Inject] private IJSRuntime JS { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("initHeroParallax");
+        }
+    }
+}

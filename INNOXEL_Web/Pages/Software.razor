@@ -1,0 +1,500 @@
+﻿@page "/software"
+@inherits LayoutComponentBase
+
+<MudLayout>
+    <MudDrawer @bind-Open="_drawerOpen" Anchor="@_anchor" Elevation="1" Variant="DrawerVariant.Temporary" OverlayAutoClose="true">
+        <MudDrawerHeader>
+            <MudText Typo="Typo.h6">INNOXEL Software</MudText>
+        </MudDrawerHeader>
+        <MudNavMenu>
+            <MudNavLink Icon="@Icons.Material.TwoTone.Download" Title="Software" Href="/software">Software</MudNavLink>
+            <MudNavLink Icon="@Icons.Material.TwoTone.Info" Title="About" Href="/about">About</MudNavLink>
+            <MudNavLink Icon="@Icons.Material.TwoTone.ContactPhone" Title="Contact" Href="/contact">Contact</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large">
+
+
+            <!-- --- Group 1 Title --- -->
+
+                <!-- --- Empfehlungen für den Umgang mit Aktualisierungen --- -->
+<MudItem xs="12" sm="12" md="12">
+    <MudPaper Class="p-6 rounded-xl shadow-sm"
+    style="padding: 5%;">
+
+        <!-- Title -->
+        <MudText Typo="Typo.h4" Align="Align.Center" Class="font-semibold mb-4">
+            Empfehlungen für den Umgang mit Aktualisierungen (Updates)
+        </MudText>
+
+        <!-- Intro -->
+        <MudText Typo="Typo.body1" Class="mb-3">
+            Es ist ratsam, ein Update nur dann durchzuführen, wenn:
+        </MudText>
+
+        <!-- Bullet List -->
+        <MudList Dense="true" Class="mb-4">
+            <MudListItem>
+                In der Versionsbeschreibung spezifische Probleme aufgeführt sind, 
+                die sich auf Ihre Anlage auswirken könnten.
+            </MudListItem>
+            <MudListItem>
+                Sie von neu hinzugefügten Funktionen profitieren möchten, 
+                die in der aktualisierten Version verfügbar sind.
+            </MudListItem>
+            <MudListItem>
+                Sie über alle relevanten Informationen zum System verfügen, 
+                einschliesslich Konfigurationen und Anlagendokumentation.
+            </MudListItem>
+            <MudListItem>
+                Sie die Abhängigkeiten zu anderen Systemen, 
+                wie beispielsweise RTI, verstehen.
+            </MudListItem>
+        </MudList>
+
+        <!-- Important Notes -->
+        <MudText Typo="Typo.body1" Class="mb-3">
+            Bitte bedenken Sie, dass ein Update scheitern kann. 
+            Daher ist es wichtig sicherzustellen, dass Sie Zugriff auf ältere 
+            Versionsstände (Software & Konfigurationen) haben, 
+            um das System im Falle eines Problems unter unserer Anleitung 
+            in den Originalzustand zurücksetzen zu können.
+        </MudText>
+
+        <MudText Typo="Typo.body1" Class="mb-3">
+            Es wird dringend empfohlen, das Update <b>während unserer Geschäftszeiten</b> 
+            durchzuführen, um im Fehlerfall Unterstützung von unserem Team zu erhalten. 
+            Nach einem Update müssen die grundlegenden Funktionen sowie 
+            Sicherheitsmechanismen (z.B. Windschutz) erneut überprüft werden.
+        </MudText>
+
+        <MudText Typo="Typo.body1" Class="mb-3">
+            Bitte beachten Sie, dass die Gewährleistungsansprüche für die gelieferte 
+            Hardware und die von uns bereitgestellte Softwareversion gelten. 
+            Ansprüche im Zusammenhang mit einer neuen Softwareversion sind 
+            jedoch von der Gewährleistung ausgeschlossen.
+        </MudText>
+
+        <MudAlert Severity="Severity.Warning"  Class="mt-4 mb-2">
+            Bei Fragen stehen Ihnen unsere Wissensdatenbank sowie unser 
+            Support-Team unter <b>support@innoxel.ch</b> zur Verfügung.
+        </MudAlert>
+    </MudPaper>
+
+    <!-- Divider and Version Note -->
+    <MudDivider Class="my-6" />
+
+    <MudPaper Class="p-4 bg-blue-50 rounded-xl shadow-sm"
+    style="padding: 5%;">
+        <MudText Typo="Typo.h6" Class="font-semibold text-blue-800">
+            ⚠️ Master 3 Firmware Versionen vor 1.6 müssen zuerst auf die Version 1.6 
+            aktualisiert werden. Ein direktes Update von z.B. 1.4 auf 1.11 ist nicht möglich.
+        </MudText>
+    </MudPaper>
+</MudItem>
+
+
+
+            <div style="height:2vh;"></div>
+
+
+            <!-- --- Group 2 neuste INNOXEL Software--- -->
+            <MudText Typo="Typo.h5" Class="my-4">Neuste Version</MudText>
+            <MudDivider Class="mb-4" />
+             
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard>
+                        <MudCardMedia Image="images/software1.jpg" Title="Software 1" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">14.101</MudText>
+                            <MudText>Setup 14.101 & Master 3 1.11.0</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Color="Color.Primary" >Download</MudButton>
+                            <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info" OnClick='() => OnButtonClickedAsync("14.101")'>Changelog</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                <!-- Other items in this group -->
+            </MudGrid>
+
+            <div style="height:5vh;"></div>
+
+
+            <!-- --- Group 3 Das ältere Versionen von INNOXEL setup abschnitt --- -->
+            <MudText Typo="Typo.h5" Class="my-4">Ältere Versionen</MudText>
+            <MudDivider Class="mb-4" />
+
+            <MudCarousel TData="object"
+                         Class="software-carousel"
+                         AutoCycle="false"
+                         ShowArrows="true"
+                         ShowBullets="false"
+                         style="height:40vh;">
+
+                <MudCarouselItem>
+                    <div style="display:flex; justify-content:center; align-items:stretch; gap:16px; height:100%;">
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/software1.jpg" Title="Software 2" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">14.001</MudText>
+                                <MudText>Setup 14.001 & Master 3 1.10.2</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Primary">Download</MudButton>
+                                <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info" OnClick='() => OnButtonClickedAsync("14.001")'>Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/software1.jpg" Title="Software 2" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">13.009</MudText>
+                                <MudText>Setup 13.009 & Master 3 1.9.4</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Primary">Download</MudButton>
+                                <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/12004.png" Title="Software 2" Style="height:50%; object-fit:fill;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">12.102</MudText>
+                                <MudText>Setup 12.102 & Master 3 1.8.8</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Primary">Download</MudButton>
+                                <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+                    </div>
+                </MudCarouselItem>
+
+                <MudCarouselItem>
+                    <div style="display:flex; justify-content:center; align-items:stretch; gap:16px; height:100%;">
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/software1.jpg" Title="Software 2" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">10.522</MudText>
+                                <MudText>Setup 10.522 & Master 3 1.5.1</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Primary">Download</MudButton>
+                                <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/software1.jpg" Title="Software 2" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">10.402</MudText>
+                                <MudText>Setup 10.402 & Master 3 1.4.0</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Primary">Download</MudButton>
+                                <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+                    </div>
+                </MudCarouselItem>
+
+            </MudCarousel>
+
+
+
+            <div style="height:5vh;"></div>
+
+
+            <!-- --- Group 4 Dumb things MOXA --- -->
+            <MudText Typo="Typo.h5" Class="my-4">Software für Produkte von MOXA</MudText>
+            <MudDivider Class="mb-4" />
+
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard>
+                        <MudCardMedia Image="images/software1.jpg" Title="NPort Administration Suite v3.0" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">NPort Administration Suite v3.0</MudText>
+                            <MudText>Setup 13.109 & Master 3 1.10.5</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Color="Color.Primary" >Download</MudButton>
+                            <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info" >Changelog</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard>
+                        <MudCardMedia Image="images/software1.jpg" Title="NPort Search Utility v2.3" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">NPort Search Utility v2.3</MudText>
+                            <MudText>Setup 13.109 & Master 3 1.10.5</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Color="Color.Primary" >Download</MudButton>
+                            <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+
+
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard>
+                        <MudCardMedia Image="images/software1.jpg" Title="UPort 1100 Series Driver for Windows" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">UPort 1100 Series Driver for Windows</MudText>
+                            <MudText>Setup 13.109 & Master 3 1.10.5</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Color="Color.Primary" >Download</MudButton>
+                            <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info" Href="/software/software2">Changelog</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+
+
+
+
+            </MudGrid>
+
+            <div style="height:5vh;"></div>
+
+
+            <!-- --- Group 5  also very very old things --- -->
+            <MudText Typo="Typo.h5" Class="my-4">Software GTWIN für Panasonic-Touchpanel</MudText>
+            <MudDivider Class="mb-4" />
+
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard>
+                        <MudCardMedia Image="images/software1.jpg" Title="Software GTWIN 2C0" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">Software GTWIN 2C0</MudText>
+                            <MudText>Setup 13.109 & Master 3 1.10.5</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Color="Color.Primary" >Download</MudButton>
+                            <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info" Href="/software/software2">Changelog</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+
+
+
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard>
+                        <MudCardMedia Image="images/software1.jpg" Title="Neue Symbole" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">Neue Symbole</MudText>
+                            <MudText>Setup 13.109 & Master 3 1.10.5</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Color="Color.Primary" >Download</MudButton>
+                            <MudButton Color="Color.Primary" StartIcon="@Icons.Material.TwoTone.Info" Href="/software/software2">Changelog</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            </MudGrid>
+
+
+            <div style="height:5vh;"></div>
+
+
+
+
+
+            <!-- ---  OVerlay Message provider used for changelog.... maybe better implementation than switch case  --- -->
+                       
+            <MudMessageBox @ref="_mudMessageBox" Title="Versionsinfos">
+              
+                <MessageContent>
+                            <div style="max-height:70vh; overflow-y:auto; padding-right:8px;">
+
+
+                    @switch (activeVersion)
+                    {
+                        case "14.101":
+                            <MudText Typo="Typo.h6">
+                        <b>
+
+                            Neue Funktionen:
+                        </b>
+
+
+                    </MudText>
+                    <MudText Typo="Typo.body2">
+Kommunikation von 2N Aussensprechstellen zu INNOXEL System ist möglich (z.B. Bewegungsmelder der 2N Aussensprechstelle verwenden, um automatisch eine Beleuchtung im Eingangsbereich zu aktivieren. Oder um eine individuelle Willkommensszene zu aktivieren, sobald ein Bewohner seinen Key-Fob an die 2N Aussensprechstelle hält.). Unser INNOXEL Kundencenter unterstützt Sie gerne bei der Integration.
+                        <div style="height:2vh;"></div>
+
+<MudDivider></MudDivider>
+                        <div style="height:2vh;"></div>
+
+                    </MudText>
+                    <MudText Typo="Typo.h6">
+                        <b>
+
+                            Bekannte Probleme:
+
+                        </b>
+
+
+                    </MudText>
+
+                    <MudText Typo="Typo.body2">
+                        Beim Verknüpfen eines Ventils mit den Thermostaten stürzt das Setup ab, wenn auf Aktor Adresse 00 ein Motor G2 konfiguriert ist. Es wird daher empfohlen, die Motoren G2 erst ab Adresse 01 zu verwenden.
+
+
+                            </MudText>
+
+                            break;
+
+                       case "14.001":
+    <MudPaper Class="p-4 mb-4" Elevation="0">
+
+        <!-- Section: Neue Funktionen -->
+        <MudText Typo="Typo.h6" Class="mt-2 mb-1 font-semibold">
+            Neue Funktionen:
+        </MudText>
+        <MudText Typo="Typo.body2" Class="mb-4">
+            Kommunikation von 2N Aussensprechstellen zu INNOXEL System ist möglich 
+            (z.B. Bewegungsmelder der 2N Aussensprechstelle verwenden, um automatisch 
+            eine Beleuchtung im Eingangsbereich zu aktivieren oder eine individuelle 
+            Willkommensszene zu starten, sobald ein Bewohner seinen Key-Fob an die 
+            Aussensprechstelle hält).<br /><br />
+            Unser INNOXEL Kundencenter unterstützt Sie gerne bei der Integration.
+        </MudText>
+
+        <MudDivider Class="my-3" />
+
+        <!-- Section: Bekannte Probleme -->
+        <MudText Typo="Typo.h6" Class="mt-2 mb-1 font-semibold">
+            Bekannte Probleme:
+        </MudText>
+        <MudText Typo="Typo.body2" Class="mb-4">
+            Beim Verknüpfen eines Ventils mit den Thermostaten stürzt das Setup ab, 
+            wenn auf Aktor Adresse 00 ein Motor G2 konfiguriert ist. 
+            Es wird daher empfohlen, die Motoren G2 erst ab Adresse 01 zu verwenden.
+        </MudText>
+
+        <MudDivider Class="my-3" />
+
+        <!-- Section: Bugfixes -->
+        <MudText Typo="Typo.h6" Class="mt-2 mb-1 font-semibold">
+            Bugfixes:
+        </MudText>
+        <MudList Dense="true" Class="mb-4">
+            <MudListItem>Der Master 3 zeigt die MAC-Adresse wieder auf dem Display an.</MudListItem>
+            <MudListItem>Die Sortierung der Kontrollelemente in der neuen WebApp entspricht nun der alten WebApp.</MudListItem>
+            <MudListItem>Zeitschaltuhren verhalten sich nun unmittelbar nach Sommer- bzw. Standardzeitumstellung korrekt.</MudListItem>
+        </MudList>
+
+        <MudDivider Class="my-3" />
+
+        <!-- Section: Produktpflege -->
+        <MudText Typo="Typo.h6" Class="mt-2 mb-1 font-semibold">
+            Produktpflege:
+        </MudText>
+        <MudList Dense="true">
+            <MudListItem>Neue Master 3 Baseboard Firmware 1.0.0.14 wird beim Update aufgespielt.</MudListItem>
+            <MudListItem>Kurze bzw. ungültige Zeitsprünge in der GPS-Zeit werden erkannt und abgefangen.</MudListItem>
+            <MudListItem>Die Sommer- bzw. Standardzeitumstellung wird in der Log-Datei des Master 3 vermerkt.</MudListItem>
+            <MudListItem>Die Qualität der Wetterstationsdaten wird in der Log-Datei des Master 3 geloggt.</MudListItem>
+            <MudListItem>Der Sonnerie-Taster wurde im Setup von „Diverses“ in „Teile von früher“ verschoben.</MudListItem>
+            <MudListItem>Logikmodul-Logeinträge für Enable-Ereignisse sind besser verständlich.</MudListItem>
+        </MudList>
+
+    </MudPaper>
+    break;
+
+
+
+
+                        default:
+                        <div>
+                            Error loading Version
+                        </div>
+                            break;
+                    }
+                    
+                            </div>
+
+                </MessageContent>
+                
+            </MudMessageBox>
+
+        </MudContainer>
+    </MudMainContent>
+
+
+
+</MudLayout>
+
+
+
+
+<style>
+    .software-carousel {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .mud-carousel-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+
+    }
+
+    .mud-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .mud-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+
+    .software-carousel .mud-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .software-carousel .mud-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+</style>
+
+
+
+
+
+
+@code {
+    private bool _drawerOpen = false;
+    private Anchor _anchor = Anchor.Start;
+
+    private MudMessageBox _mudMessageBox;
+    private string _state = "Message box hasn't been opened yet";
+
+    private string activeVersion;
+
+    private async Task OnButtonClickedAsync(string version)
+    {
+        activeVersion = version;
+        bool? result = await _mudMessageBox.Show();
+        _state = result is null ? "Canceled" : "Deleted!";
+        StateHasChanged();
+    }
+
+
+}
