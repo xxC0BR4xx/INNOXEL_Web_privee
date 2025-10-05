@@ -16,11 +16,7 @@
 
 
 
-	<ItemGroup>
-	  <Content Update="wwwroot\js\site.js">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
+	
 
 	<ItemGroup>
 		<Content Include="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
