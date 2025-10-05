@@ -38,6 +38,6 @@ jobs:
         with:
           branch: gh-pages           # Branch to deploy to
           folder: release/wwwroot    # Folder containing index.html
-          clean: true                # Remove old files trigger commit
+          clean: true                # Remove old files trigger 
 
 
