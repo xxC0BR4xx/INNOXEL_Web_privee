@@ -29,7 +29,7 @@ jobs:
 
       # 4️⃣ Publish Blazor WebAssembly project
       - name: Publish Blazor WASM
-        run: dotnet publish -c Release -o release /p:BaseHref=/INNOXEL_Web_privee/
+        run: dotnet publish -c Release -o release 
 
 
       # 5️⃣ Deploy to GitHub Pages
