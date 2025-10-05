@@ -1,31 +1,42 @@
-name: Build and Deploy
-on: [push]
+name: Build and Deploy Blazor WASM to GitHub Pages
+
+on:
+  push:
+    branches:
+      - masster  # Change if your default branch is different
+
 permissions:
   contents: write
+
 jobs:
-  deploy-to-github-pages:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: write-all
+
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          
-      - name: Setup .NET Core SDK
+      # 1️⃣ Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup .NET SDK
+      - name: Setup .NET 8 SDK
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.200
 
-      - name: Restore packages
+      # 3️⃣ Restore dependencies
+      - name: Restore .NET packages
         run: dotnet restore
 
-      - name: Publish .NET Core Project
+      # 4️⃣ Publish Blazor WebAssembly project
+      - name: Publish Blazor WASM
         run: dotnet publish -c Release -o release
 
-      - name: Commit wwwroot to GitHub Pages
+      # 5️⃣ Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: release/wwwroot
-        
+          branch: gh-pages           # Branch to deploy to
+          folder: release/wwwroot    # Folder containing index.html
+          clean: true                # Remove old files
+
 
