@@ -1,7 +1,7 @@
 {
   "entryAssembly": "INNOXEL_Web",
   "resources": {
-    "hash": "sha256-subj4AjbWLR1YnbLl6cBP6Szhx/YmzCzUIhBIW7FCz8=",
+    "hash": "sha256-J43tcimLQ9RtiPIiBNJwr57htBIGZpZiH8zwRrNyXxI=",
     "runtime": {
       "dotnet.js": "sha256-pu7MO47B6So4jcW6iY2UI11lBZYz2EQnJKiYNsOpNJg=",
       "dotnet.timezones.blat": "sha256-vrFYQt55a4tGoDGoyRfjjGa1nSecx646RK78iTzPWCM=",
@@ -51,7 +51,7 @@
       "System.Text.RegularExpressions.dll": "sha256-634KCZMFOpv6GEMsv7oUXPV+6hyKoxPNf7n20d+O31I=",
       "System.dll": "sha256-/CoLM+0eZmBCLWHyE5EaG/XonczpuGmu7BxChElWHqE=",
       "System.Private.CoreLib.dll": "sha256-SJupyHuFTT6wnTGi/P3jxe9rVW5uKUbYFRMnXn+rwUU=",
-      "INNOXEL_Web.dll": "sha256-j1iu0zLldRc6+L3iO0VHBE6YQg7/9U5Cf5/Y6LBehjM="
+      "INNOXEL_Web.dll": "sha256-gjKXXtspJpLyFi3FzYbajJQHSzA1ez5Sh9EVNugTLDs="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
