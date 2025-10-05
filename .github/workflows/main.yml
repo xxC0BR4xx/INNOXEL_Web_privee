@@ -23,10 +23,9 @@ jobs:
         run: dotnet publish -c Release -o release
 
       - name: Commit wwwroot to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        
-      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: release/wwwroot
+        
+
