@@ -11,7 +11,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    permissions: write-all
     steps:
       # 1️⃣ Checkout code
       - name: Checkout repository
