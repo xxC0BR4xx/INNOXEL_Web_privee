@@ -38,6 +38,7 @@ jobs:
         with:
           branch: gh-pages           # Branch to deploy to
           folder: release/wwwroot    # Folder containing index.html
+          target-folder: INNOXEL_Web_privee
           clean: true                # Remove old files trigger 
 
 
