@@ -1,9 +1,10 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="GothamTheme" />
+
 
 <MudDialogProvider />
 <MudSnackbarProvider />
+<MudThemeProvider Theme="@_currentTheme" IsDarkMode="_isDarkMode" @ref="_mudThemeProvider"></MudThemeProvider>
 
 @*
 
@@ -251,6 +252,11 @@
                                        Color="Color.Inherit">
                                 Offene Stellen
                             </MudButton>
+
+                            <MudSpacer>
+
+                            </MudSpacer>
+                            <MudIconButton Icon="@_themeIcon" OnClick="ToggleTheme" Color="Color.Inherit" />
                         </div>
                     </div>
                 </div>
@@ -544,7 +550,6 @@
 
 </MudLayout>
 
-
 <style>
 
     .cuddly-white-appbar {
@@ -796,6 +801,96 @@
     private bool _open;
     private Anchor _anchor;
     private bool _overlayAutoClose = true;
+    private MudThemeProvider? _mudThemeProvider;
+
+
+
+    private bool _isDarkMode = false;
+    private string _themeIcon => _isDarkMode ? Icons.Material.TwoTone.DarkMode :Icons.Material.TwoTone.LightMode;
+
+
+
+    private MudTheme _lightTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = Colors.Blue.Default,
+            Surface = Colors.Gray.Lighten5,
+            Background = Colors.Shades.White,
+            AppbarBackground = Colors.Blue.Default,
+            Info = Colors.Blue.Darken3,
+            TextPrimary = Colors.Shades.Black,
+			Tertiary = Colors.Red.Accent4
+        },
+
+        Typography = new Typography()
+        {
+
+            Default = new DefaultTypography()
+            {
+                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
+                FontWeight = "400"
+            },
+            H1 = new H1Typography()
+            {
+                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
+                FontWeight = "700",
+                FontSize = "2.5rem",
+            },
+            Button = new ButtonTypography()
+            {
+                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
+                FontWeight = "700"
+            }
+        }
+    };
+
+    private MudTheme _darkTheme = new MudTheme()
+    {
+        PaletteDark = new PaletteDark()
+        {
+            Primary = Colors.Gray.Darken3,
+            Surface = Colors.Gray.Darken3,
+            Background = Colors.Gray.Darken4,
+            AppbarBackground = Colors.Gray.Darken4,
+			Info = Colors.Blue.Lighten1,
+            TextPrimary = Colors.Shades.White
+        },
+        Typography = new Typography()
+        {
+            Default = new DefaultTypography()
+            {
+                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
+                FontWeight = "400"
+            },
+            H1 = new H1Typography()
+            {
+                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
+                FontWeight = "700",
+                FontSize = "2.5rem",
+            },
+            Button = new ButtonTypography()
+            {
+                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
+                FontWeight = "700"
+            }
+        }
+
+    };
+
+    private MudTheme _currentTheme;
+
+    protected override void OnInitialized()
+    {
+        _currentTheme = _lightTheme;
+    }
+
+    private void ToggleTheme()
+    {
+        _isDarkMode = !_isDarkMode;
+        _currentTheme = _isDarkMode ? _darkTheme : _lightTheme;
+    }
+
 
     private void OpenDrawer(Anchor anchor)
     {
@@ -811,28 +906,6 @@
     }
 
 
-    MudTheme GothamTheme = new MudTheme()
-    {
-        Typography = new Typography()
-        {
-            Default = new Default()
-            {
-                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
-                FontWeight = 400
-            },
-            H1 = new H1()
-            {
-                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
-                FontWeight = 700,
-                FontSize = "2.5rem",
-            },
-            Button = new Button()
-            {
-                FontFamily = new[] { "Gotham", "Arial", "sans-serif" },
-                FontWeight = 700
-            }
-        }
-    };
 
 
  
