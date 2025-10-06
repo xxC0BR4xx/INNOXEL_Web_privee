@@ -124,7 +124,7 @@
             <div style="height:5vh;"></div>
 
 
-            <!-- --- Group 3 Das ältere Versionen von INNOXEL setup abschnitt --- -->
+           <!-- --- Group 3 Das ältere Versionen von INNOXEL setup abschnitt --- -->
             <MudText Typo="Typo.h5" Class="my-4">Ältere Versionen</MudText>
             <MudDivider Class="mb-4" />
 
@@ -204,6 +204,91 @@
                 </MudCarouselItem>
 
             </MudCarousel>
+
+
+
+
+            <!-- --- Group 3.5 Das ältere Versionen von INNOXEL MASTER 2 --- -->
+            <MudText Typo="Typo.h5" Class="my-4">Softwareversionen für INNOXEL Master 2</MudText>
+            <MudDivider Class="mb-4" />
+
+            <MudCarousel TData="object"
+                         Class="software-carousel"
+                         AutoCycle="false"
+                         ShowArrows="true"
+                         ShowBullets="false"
+                         style="height:40vh;">
+
+                <MudCarouselItem>
+                    <div style="display:flex; justify-content:center; align-items:stretch; gap:16px; height:100%;">
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="./images/14001.png" Title="14.001" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">9.200</MudText>
+                                <MudText>Setup 9.200 & Master 2 9.23</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Info">Download</MudButton>
+                                <MudButton Color="Color.Info" StartIcon="@Icons.Material.TwoTone.Info" OnClick='() => OnButtonClickedAsync("14.001")'>Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="./images/13009.png" Title="13.009" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">Setup 9.111</MudText>
+                                <MudText>Setup 9.111 & Master 2 9.10</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Info">Download</MudButton>
+                                <MudButton Color="Color.Info" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/12004.png" Title="Software 2" Style="height:50%; object-fit:fill;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">12.102</MudText>
+                                <MudText>Setup 12.102 & Master 3 1.8.8</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Info">Download</MudButton>
+                                <MudButton Color="Color.Info" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+                    </div>
+                </MudCarouselItem>
+
+                <MudCarouselItem>
+                    <div style="display:flex; justify-content:center; align-items:stretch; gap:16px; height:100%;">
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/software1.jpg" Title="Software 2" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">10.522</MudText>
+                                <MudText>Setup 10.522 & Master 3 1.5.1</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Info">Download</MudButton>
+                                <MudButton Color="Color.Info" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+
+                        <MudCard Style="width:260px; height:100%; display:flex; flex-direction:column; justify-content:space-between;">
+                            <MudCardMedia Image="images/software1.jpg" Title="Software 2" Style="height:130px; object-fit:cover;" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.h6">10.402</MudText>
+                                <MudText>Setup 10.402 & Master 3 1.4.0</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Color="Color.Info">Download</MudButton>
+                                <MudButton Color="Color.Info" StartIcon="@Icons.Material.TwoTone.Info">Changelog</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+                    </div>
+                </MudCarouselItem>
+
+            </MudCarousel>
+
 
 
 

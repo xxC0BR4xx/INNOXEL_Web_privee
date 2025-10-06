@@ -1,0 +1,143 @@
+﻿@page "/products"
+@using MudBlazor
+
+<!---
+	
+ProdukteÜbersicht mit  neuen und Alten Produkten bei neuen Produkten Link zum 
+
+Analog zum 
+
+
+Jedoch zuzstäzliche Kategorie Alte Produkte inkl. Datenblätter
+
+https://mudblazor.com/components/list#nested-list
+
+
+ Produkt als Karte darstellen, Mit
+
+Datenblatt und Anleitungen AlsButton welche link auf Helpdesk haben
+
+Sowie FAQ Button welcher zur Jeweiligen Seite <figure>
+
+
+        
+
+/>
+
+
+
+->
+
+
+
+
+<PageTitle>Products</PageTitle>
+
+<MudGrid>
+    <!-- Left Sidebar -->
+    <MudItem xs="12" sm="3">
+        <MudPaper Class="pa-4">
+            <MudText Typo="Typo.h6">Categories</MudText>
+            <MudTreeView T="Category" Items="@TreeCategories" OpenAll="true">
+   
+</MudTreeView>
+        </MudPaper>
+    </MudItem>
+
+    <!-- Main Content -->
+    <MudItem xs="12" sm="9">
+        @foreach (var group in ProductGroups)
+        {
+            <MudText Typo="Typo.h5" Class="mb-2">@group.GroupName</MudText>
+        <MudCarousel TData="object">
+                @foreach (var product in group.Products)
+                {
+                    <MudCarouselItem>
+                        <MudCard Style="width: 200px; margin: 10px;">
+                            <MudCardMedia Image="@product.ImageUrl" />
+                            <MudCardContent>
+                                <MudText Typo="Typo.subtitle1">@product.Name</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="@product.DatasheetUrl" Target="_blank">Datasheet</MudButton>
+                                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Href="@product.ManualUrl" Target="_blank">Manual</MudButton>
+                            </MudCardActions>
+                        </MudCard>
+                    </MudCarouselItem>
+                }
+            </MudCarousel>
+        }
+    </MudItem>
+</MudGrid>
+
+@code {
+    public class Category
+    {
+        public string Name { get; set; }
+        public List<Category> Children { get; set; } = new();
+    }
+
+    public class Product
+    {
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public string DatasheetUrl { get; set; }
+        public string ManualUrl { get; set; }
+    }
+
+    public class ProductGroup
+    {
+        public string GroupName { get; set; }
+        public List<Product> Products { get; set; } = new();
+    }
+
+    private List<TreeItemData<Category>> TreeCategories;
+
+
+
+    private List<Category> Categories = new()
+    {
+        new Category
+        {
+            Name = "Gebäudeautomation",
+            Children = new List<Category>
+            {
+                new Category { Name = "Innoxel" },
+                new Category { Name = "KNX" },
+                new Category { Name = "Busch-Jaeger" }
+            }
+        },
+        new Category
+        {
+            Name = "Beleuchtung",
+            Children = new List<Category>
+            {
+                new Category { Name = "LED" },
+                new Category { Name = "Smart Lighting" }
+            }
+        }
+    };
+
+    private List<ProductGroup> ProductGroups = new()
+    {
+        new ProductGroup
+        {
+            GroupName = "Innoxel",
+            Products = new List<Product>
+            {
+                new Product { Name = "Product 1", ImageUrl = "_content/YourProject/images/product1.jpg", DatasheetUrl = "#", ManualUrl = "#" },
+                new Product { Name = "Product 2", ImageUrl = "_content/YourProject/images/product2.jpg", DatasheetUrl = "#", ManualUrl = "#" }
+            }
+        },
+        new ProductGroup
+        {
+            GroupName = "KNX",
+            Products = new List<Product>
+            {
+                new Product { Name = "Product 3", ImageUrl = "_content/YourProject/images/product3.jpg", DatasheetUrl = "#", ManualUrl = "#" },
+                new Product { Name = "Product 4", ImageUrl = "_content/YourProject/images/product4.jpg", DatasheetUrl = "#", ManualUrl = "#" }
+            }
+        }
+    };
+}
+
