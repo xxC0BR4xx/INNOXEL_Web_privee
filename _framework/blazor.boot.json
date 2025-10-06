@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "INNOXEL_Web",
   "resources": {
-    "hash": "sha256-SGqK5cLL0ELvrt35tqH4bUkJqSkfGIPCvkmXEIsJz88=",
+    "hash": "sha256-bX249xQm8LGiOEhgxTrLcpwmiAo3r1zo1vSUajg7OZU=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-D0bzod5lwwSzPR43JC8TTCcZKw+3jIHOk8CZFCRj5is="
     },
@@ -33,7 +33,7 @@
       "Microsoft.Extensions.Primitives.wasm": "sha256-xyqqv0SMCahnrOs+p5QYDHoh/BAYlbNtyjTTpqmRW/g=",
       "Microsoft.JSInterop.wasm": "sha256-c+hOpxIiCCOxX3nLyhFcd6AKhmwg2gfccl5057/f9Lk=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-aqyuCwf1Tsx4FU+9M7zG+jZJZH7d2KbP4hPdHZlKvHw=",
-      "MudBlazor.wasm": "sha256-bybuFYJUB695ZZB9EDoUn37uN1gSAka6EmuPMnJ/ZT8=",
+      "MudBlazor.wasm": "sha256-l0M5MHVcZMCokoFbl+dRuPoanXJLTokZImJAGjT49ck=",
       "System.Collections.Concurrent.wasm": "sha256-ZCbYcAqumdlglUhHD8LUyeCxggFddydsRFE0AEFrfXk=",
       "System.Collections.wasm": "sha256-8ArDiK/ti96+zi5zg39JpDB9t0TlUSZBMwlahSz3bog=",
       "System.ComponentModel.Annotations.wasm": "sha256-3g7e8oktSvlabwzZsuhK4lBikzQyIxVZ88IbRIqa3JI=",
@@ -57,7 +57,7 @@
       "System.Text.RegularExpressions.wasm": "sha256-LknzojEpcL3TnsjZXBjMrkQA33FmD05bUbQy6K5LOXc=",
       "System.wasm": "sha256-9DLmgOsnmEbjuZrRVFruRmVRvh/skjCDv6hQMjVZ3K8=",
       "System.Private.CoreLib.wasm": "sha256-bcpfqSMxu8+uConsNjqQXCWvKa8M6hYSM4JCN0lKs/w=",
-      "INNOXEL_Web.wasm": "sha256-ACDaCmD/2WyUi2epgNiOWm+BvBOTruYyrfNlbRixEMs="
+      "INNOXEL_Web.wasm": "sha256-7e9OWJiZzjW3r/hPcZK9qMoK7wGDTVafoTb64O4RqxQ="
     }
   },
   "cacheBootResources": true,
