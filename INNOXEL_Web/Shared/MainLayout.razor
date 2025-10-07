@@ -148,7 +148,7 @@
                                 Produkte
                             </MudButton>
                             <MudButton StartIcon="@Icons.Material.TwoTone.LiveHelp"
-                                       Href="http://zidatech.freshdesk.com/support/home"
+                                       Href="./renderfrag"
                                        Variant="Variant.Text"
                                        Style="flex: 2; min-width: 200px;"
                                        Color="Color.Inherit">
@@ -248,7 +248,7 @@
 
         <!-- Mobile AppBar -->
         <MudHidden Breakpoint="Breakpoint.MdAndUp">
-            <MudAppBar Elevation="1" Color="Color.Surface" Fixed="true" Class="cuddly-white-appbar">
+            <MudAppBar Elevation="1" Color="Color.Dark" Fixed="true" Class="cuddly-white-appbar">
                 <div class="d-flex align-center justify-space-between w-100">
                   
                     <!-- Compact Logo Only -->
@@ -256,7 +256,7 @@
 
                         <a href="./">
 
-                            <svg class="logo-svg" style="width: 100%; height: 100%; margin-top:5%;" viewBox="0 0 396.3 104.01" preserveAspectRatio="xMinYMid meet">
+                            <svg class="logo-svg" style="width: 80%; height: 80%; margin-top:5%;" viewBox="0 0 396.3 104.01" preserveAspectRatio="xMinYMid meet">
                                 <defs>
                                     <style>
                                         .cls-1 {
@@ -304,7 +304,9 @@
                                         <rect class="cls-3" x="206.33" width="88.92" height="88.92"></rect>
                                     </clipPath>
                                 </defs>
-
+                                <path class="cls-7" d="M1.23,75.29h12.89V16.69H1.23v58.6h0ZM25.44,75.29h12.07v-39.23h.16l24.38,39.23h12.89V16.69h-12.07v39.32h-.16l-24.46-39.32h-12.8v58.6h0ZM86.26,75.29h12.07v-39.23h.16l24.38,39.23h12.89V16.69h-12.07v39.32h-.16l-24.46-39.32h-12.8v58.6h0ZM144.54,46.24c0,16.91,10.67,30.45,28.81,30.45s28.81-13.54,28.81-30.45-10.67-30.94-28.81-30.94-28.81,13.54-28.81,30.94h0ZM157.42,46.24c0-10.26,4.35-20.11,15.92-20.11s15.92,9.85,15.92,20.11-4.35,19.62-15.92,19.62-15.92-9.85-15.92-19.62h0Z"></path>
+                                <path class="cls-7" d="M301.67,75.5h44.49v-10.83h-31.6v-14.36h28.4v-10.01h-28.4v-12.56h30.94v-10.83h-43.83v58.6h0ZM354.86,75.5h41.45v-10.83h-28.56V16.89h-12.89v58.6h0Z"></path>
+                                <path class="cls-1" d="M294.03,44.46c0,23.88-19.35,43.23-43.23,43.23s-43.23-19.35-43.23-43.23S226.92,1.23,250.8,1.23s43.23,19.35,43.23,43.23"></path>
                                 <g class="cls-9">
                                     <path class="cls-5" d="M294.03,44.46c0,23.88-19.35,43.23-43.23,43.23s-43.23-19.35-43.23-43.23S226.92,1.23,250.8,1.23s43.23,19.35,43.23,43.23h0Z"></path>
                                 </g>
@@ -315,14 +317,17 @@
                                 <polyline class="cls-2" points="218.7 73.51 218.7 73.51 226.65 80.43 249.99 48.37"></polyline>
                                 <polygon class="cls-8" points="236.51 8.92 225.2 21.18 245.45 45.78 236.51 8.92"></polygon>
                                 <polygon class="cls-8" points="257.45 30.67 268.48 20.16 253.09 38.11 257.45 30.67"></polygon>
-
+                                <path class="cls-1" d="M256.21,50.68s6.93,8.98,6.93,9.75,6.16,8.46,6.16,8.46l-13.85-13.85.77-4.36h0Z"></path>
+                                <path class="cls-4" d="M256.21,50.68h0s6.93,8.98,6.93,9.75,6.16,8.46,6.16,8.46"></path>
+                                <path class="cls-1" d="M253.1,44.66s6.93,8.98,6.93,9.75,6.16,8.46,6.16,8.46l-13.85-13.85.77-4.36h0Z"></path>
+                                <path class="cls-6" d="M260.03,54.4c0,.77,6.16,8.46,6.16,8.46l-13.85-13.85.77-4.36h0"></path>
                             </svg>
 
                         </a>
                     </div>
 
                     <!-- Hamburger Menu -->
-                    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Primary" OnClick="@(() => OpenDrawer(Anchor.Start))" />
+                    <MudIconButton Icon="@Icons.Material.TwoTone.Menu" Color="Color.Info" OnClick="@(() => OpenDrawer(Anchor.Start))" />
                 </div>
             </MudAppBar>
         </MudHidden>
