@@ -1,143 +1,126 @@
 ﻿@page "/products"
 @using MudBlazor
 
-<!---
-	
-ProdukteÜbersicht mit  neuen und Alten Produkten bei neuen Produkten Link zum 
-
-Analog zum 
-
-
-Jedoch zuzstäzliche Kategorie Alte Produkte inkl. Datenblätter
-
-https://mudblazor.com/components/list#nested-list
-
-
- Produkt als Karte darstellen, Mit
-
-Datenblatt und Anleitungen AlsButton welche link auf Helpdesk haben
-
-Sowie FAQ Button welcher zur Jeweiligen Seite <figure>
-
-
-        
-
-/>
-
-
-
-->
-
-
-
-
 <PageTitle>Products</PageTitle>
 
 <MudGrid>
     <!-- Left Sidebar -->
     <MudItem xs="12" sm="3">
         <MudPaper Class="pa-4">
-            <MudText Typo="Typo.h6">Categories</MudText>
-            <MudTreeView T="Category" Items="@TreeCategories" OpenAll="true">
-   
-</MudTreeView>
+            <MudText Typo="Typo.h6" Class="mb-2">Categories</MudText>
+                <MudTreeView T="Category">
+        <!-- New Products -->
+        <MudTreeViewItem Text="New Products" Expanded="true">
+            @foreach (var sub in NewCategories)
+            {
+                <MudTreeViewItem Text="@sub.Name" OnClick="@(() => OnCategorySelected(sub.Name))" />
+            }
+        </MudTreeViewItem>
+
+        <!-- Old Products -->
+        <MudTreeViewItem Text="Old Products" Expanded="true">
+            @foreach (var sub in OldCategories)
+            {
+                <MudTreeViewItem Text="@sub.Name" OnClick="@(() => OnCategorySelected(sub.Name))" />
+            }
+        </MudTreeViewItem>
+    </MudTreeView>
+
         </MudPaper>
     </MudItem>
 
     <!-- Main Content -->
     <MudItem xs="12" sm="9">
-        @foreach (var group in ProductGroups)
+        @if (FilteredProducts.Any())
         {
-            <MudText Typo="Typo.h5" Class="mb-2">@group.GroupName</MudText>
-        <MudCarousel TData="object">
-                @foreach (var product in group.Products)
+            <MudText Typo="Typo.h5" Class="mb-4"></MudText>
+
+            <MudCarousel TData="object">
+                @foreach (var product in FilteredProducts)
                 {
                     <MudCarouselItem>
-                        <MudCard Style="width: 200px; margin: 10px;">
+                        <MudCard Style="width: 250px; margin: auto;">
                             <MudCardMedia Image="@product.ImageUrl" />
                             <MudCardContent>
-                                <MudText Typo="Typo.subtitle1">@product.Name</MudText>
+                                <MudText Typo="Typo.subtitle1" Align="Align.Center">@product.Name</MudText>
                             </MudCardContent>
-                            <MudCardActions>
+                            <MudCardActions Class="justify-center pb-3">
                                 <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="@product.DatasheetUrl" Target="_blank">Datasheet</MudButton>
-                                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Href="@product.ManualUrl" Target="_blank">Manual</MudButton>
+                                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" Href="@product.WebsiteUrl" Target="_blank">Website</MudButton>
                             </MudCardActions>
                         </MudCard>
                     </MudCarouselItem>
                 }
             </MudCarousel>
         }
+        else
+        {
+            <MudText Typo="Typo.body1" Color="Color.Info">
+                Select a category to view products.
+            </MudText>
+        }
     </MudItem>
 </MudGrid>
 
+
+
 @code {
+    private List<Category> NewCategories = new();
+    private List<Category> OldCategories = new();
+
+    private List<Product> AllProducts = new();
+    private List<Product> FilteredProducts = new();
+
+    private string? SelectedCategory;
+
+    protected override void OnInitialized()
+    {
+        // Define categories
+        NewCategories = new()
+        {
+            new Category { Name = "Taster" },
+            new Category { Name = "Aktoren" },
+            new Category { Name = "Sensoren" },
+            new Category { Name = "Systemgeräte" }
+        };
+
+        OldCategories = new()
+        {
+            new Category { Name = "Taster" },
+            new Category { Name = "Aktoren" },
+            new Category { Name = "Sensoren" },
+            new Category { Name = "Systemgeräte" }
+        };
+
+        // Define products
+        AllProducts = new()
+        {
+            new Product { Name = "Taster Pro 2000", ImageUrl = "images/taster1.jpg", DatasheetUrl = "#", WebsiteUrl = "#", Category = "Taster" },
+            new Product { Name = "Aktoren X5", ImageUrl = "images/aktor1.jpg", DatasheetUrl = "#", WebsiteUrl = "#", Category = "Aktoren" },
+            new Product { Name = "Sensor Alpha", ImageUrl = "images/sensor1.jpg", DatasheetUrl = "#", WebsiteUrl = "#", Category = "Sensoren" },
+            new Product { Name = "Systemgerät Z", ImageUrl = "images/system1.jpg", DatasheetUrl = "#", WebsiteUrl = "#", Category = "Systemgeräte" }
+        };
+    }
+
+    private void OnCategorySelected(string categoryName)
+    {
+        SelectedCategory = categoryName;
+        FilteredProducts = AllProducts
+            .Where(p => p.Category == categoryName)
+            .ToList();
+    }
+
     public class Category
     {
-        public string Name { get; set; }
-        public List<Category> Children { get; set; } = new();
+        public string Name { get; set; } = "";
     }
 
     public class Product
     {
-        public string Name { get; set; }
-        public string ImageUrl { get; set; }
-        public string DatasheetUrl { get; set; }
-        public string ManualUrl { get; set; }
+        public string Name { get; set; } = "";
+        public string ImageUrl { get; set; } = "";
+        public string DatasheetUrl { get; set; } = "";
+        public string WebsiteUrl { get; set; } = "";
+        public string Category { get; set; } = "";
     }
-
-    public class ProductGroup
-    {
-        public string GroupName { get; set; }
-        public List<Product> Products { get; set; } = new();
-    }
-
-    private List<TreeItemData<Category>> TreeCategories;
-
-
-
-    private List<Category> Categories = new()
-    {
-        new Category
-        {
-            Name = "Gebäudeautomation",
-            Children = new List<Category>
-            {
-                new Category { Name = "Innoxel" },
-                new Category { Name = "KNX" },
-                new Category { Name = "Busch-Jaeger" }
-            }
-        },
-        new Category
-        {
-            Name = "Beleuchtung",
-            Children = new List<Category>
-            {
-                new Category { Name = "LED" },
-                new Category { Name = "Smart Lighting" }
-            }
-        }
-    };
-
-    private List<ProductGroup> ProductGroups = new()
-    {
-        new ProductGroup
-        {
-            GroupName = "Innoxel",
-            Products = new List<Product>
-            {
-                new Product { Name = "Product 1", ImageUrl = "_content/YourProject/images/product1.jpg", DatasheetUrl = "#", ManualUrl = "#" },
-                new Product { Name = "Product 2", ImageUrl = "_content/YourProject/images/product2.jpg", DatasheetUrl = "#", ManualUrl = "#" }
-            }
-        },
-        new ProductGroup
-        {
-            GroupName = "KNX",
-            Products = new List<Product>
-            {
-                new Product { Name = "Product 3", ImageUrl = "_content/YourProject/images/product3.jpg", DatasheetUrl = "#", ManualUrl = "#" },
-                new Product { Name = "Product 4", ImageUrl = "_content/YourProject/images/product4.jpg", DatasheetUrl = "#", ManualUrl = "#" }
-            }
-        }
-    };
 }
-
